@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Qusai Tahat | Software Engineer">
+<meta property="og:description" content="Software engineer at Intalio, building AI-powered enterprise systems on .NET.">
+<meta property="og:type" content="website">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Qusai Tahat | Software Engineer</title>
+<meta name="description" content="Qusai Tahat, software engineer building AI-powered enterprise systems on .NET.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one 1080px column. Hero = statement + a C# object that describes Qusai; then featured project, project grid, experience timeline, skills, contact. */
+:root {
+  --bg: #f6f6fa;
+  --surface: #ffffff;
+  --ink: #17151f;
+  --muted: #5d5a6b;
+  --line: #dddbe7;
+  --accent: #5a3fd0;
+  --accent-soft: #ece8fb;
+  --live: #0f7a55;
+  --live-soft: #e2f4ec;
+  /* code card */
+  --code-bg: #1b1828;
+  --code-fg: #e6e3f2;
+  --code-kw: #b9a6ff;
+  --code-str: #f2c48d;
+  --code-prop: #8fd3e8;
+  --code-dim: #8a85a3;
+
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);
+  --step-4: clamp(2.5rem, 1.4rem + 4.6vw, 4.25rem);
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #110f18;
+    --surface: #1a1724;
+    --ink: #eeebf7;
+    --muted: #a39fb6;
+    --line: #2d2940;
+    --accent: #a48dff;
+    --accent-soft: #2a2245;
+    --live: #5fd3a3;
+    --live-soft: #15342a;
+    --code-bg: #0b0a11;
+    --code-fg: #e6e3f2;
+    --code-kw: #b9a6ff;
+    --code-str: #f2c48d;
+    --code-prop: #8fd3e8;
+    --code-dim: #77728f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #110f18;
+  --surface: #1a1724;
+  --ink: #eeebf7;
+  --muted: #a39fb6;
+  --line: #2d2940;
+  --accent: #a48dff;
+  --accent-soft: #2a2245;
+  --live: #5fd3a3;
+  --live-soft: #15342a;
+  --code-bg: #0b0a11;
+  --code-fg: #e6e3f2;
+  --code-kw: #b9a6ff;
+  --code-str: #f2c48d;
+  --code-prop: #8fd3e8;
+  --code-dim: #77728f;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- top bar ---------- */
+.top {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding-block: 22px;
+  font-size: var(--step--1);
+}
+.monogram {
+  font-family: var(--f-mono); font-weight: 500; color: var(--ink); text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.monogram span { color: var(--accent); }
+.top nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.top nav a { color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+  padding-block: clamp(32px, 7vw, 88px) clamp(40px, 7vw, 96px);
+}
+.status {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--f-mono); font-size: var(--step--1);
+  color: var(--live); background: var(--live-soft);
+  padding: 5px 12px; border-radius: 999px;
+}
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--live); }
+.hero h1 {
+  font-family: var(--f-display);
+  font-size: var(--step-4);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 22px 0 18px;
+  text-wrap: balance;
+}
+.hero .lede {
+  font-size: var(--step-1);
+  color: var(--muted);
+  max-width: 34ch;
+  margin: 0 0 28px;
+  text-wrap: pretty;
+}
+.hero .lede strong { color: var(--ink); font-weight: 600; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 0.9375rem;
+  padding: 11px 18px; border-radius: 10px; text-decoration: none;
+  border: 1px solid var(--line); color: var(--ink); background: var(--surface);
+  transition: border-color .15s, transform .15s;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn svg { width: 17px; height: 17px; flex: none; }
+
+.code {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border-radius: var(--radius);
+  font-family: var(--f-mono);
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  box-shadow: 0 24px 60px -30px rgba(40, 20, 110, 0.55);
+  min-width: 0;
+}
+.code-head {
+  display: flex; align-items: center; gap: 7px;
+  padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  color: var(--code-dim); font-size: 0.75rem;
+}
+.code-head i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.16); }
+.code-head b { font-weight: 400; margin-left: 8px; }
+.code pre { margin: 0; padding: 18px 20px 22px; overflow-x: auto; }
+.kw { color: var(--code-kw); }
+.str { color: var(--code-str); }
+.prop { color: var(--code-prop); }
+.cm { color: var(--code-dim); }
+
+/* ---------- sections ---------- */
+section { padding-block: clamp(48px, 7vw, 88px); border-top: 1px solid var(--line); }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.eyebrow {
+  font-family: var(--f-mono); font-size: var(--step--1); color: var(--accent);
+  letter-spacing: 0.02em; display: block; margin-bottom: 8px;
+}
+h2 {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: var(--step-3); line-height: 1.05; letter-spacing: -0.02em;
+  margin: 0; text-wrap: balance;
+}
+.sec-head p { margin: 0; color: var(--muted); max-width: 42ch; }
+
+/* ---------- featured project ---------- */
+.featured {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.featured .body { padding: clamp(22px, 4vw, 40px); min-width: 0; }
+.featured h3 {
+  font-family: var(--f-display); font-weight: 700; font-size: var(--step-2);
+  letter-spacing: -0.01em; margin: 8px 0 12px; line-height: 1.15;
+}
+.featured .body > p { margin: 0 0 18px; color: var(--muted); max-width: 60ch; }
+.flow {
+  background: var(--accent-soft);
+  padding: clamp(22px, 4vw, 40px);
+  display: flex; flex-direction: column; justify-content: center; gap: 0;
+  min-width: 0;
+}
+.flow-title { font-family: var(--f-mono); font-size: 0.75rem; color: var(--muted); margin: 0 0 14px; letter-spacing: 0.02em; }
+.flow ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.flow li {
+  display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 12px;
+  padding: 9px 0; font-size: 0.9375rem; line-height: 1.45;
+  position: relative;
+}
+.flow li .n {
+  font-family: var(--f-mono); font-size: 0.75rem; color: var(--accent);
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--accent); display: grid; place-items: center;
+  background: var(--bg);
+  font-variant-numeric: tabular-nums;
+}
+.flow li:not(:last-child)::after {
+  content: ""; position: absolute; left: 12.5px; top: 37px; bottom: -8px; width: 1px; background: var(--accent); opacity: .35;
+}
+.flow li .gate { font-family: var(--f-mono); font-size: 0.8125rem; color: var(--accent); white-space: nowrap; }
+
+/* ---------- project grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.card {
+  display: flex; flex-direction: column; gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(20px, 3vw, 28px);
+  min-width: 0;
+  transition: border-color .15s;
+}
+.card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.kind { font-family: var(--f-mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.02em; }
+.badge {
+  font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.03em;
+  padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+}
+.badge.live { color: var(--live); background: var(--live-soft); }
+.badge.team { color: var(--accent); background: var(--accent-soft); }
+.card h3 {
+  font-family: var(--f-display); font-weight: 700; font-size: var(--step-1);
+  letter-spacing: -0.005em; margin: 0; line-height: 1.25;
+}
+.card p { margin: 0; color: var(--muted); font-size: 0.9375rem; }
+.points { margin: 0; padding: 0 0 0 18px; color: var(--muted); font-size: 0.9375rem; display: grid; gap: 4px; }
+.points li::marker { color: var(--accent); }
+.stack { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.stack li {
+  font-family: var(--f-mono); font-size: 0.75rem;
+  padding: 3px 9px; border-radius: 6px;
+  border: 1px solid var(--line); color: var(--ink);
+}
+.links { display: flex; gap: 18px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; font-size: 0.9375rem; font-weight: 500; }
+.links a { display: inline-flex; align-items: center; gap: 6px; }
+.links svg { width: 15px; height: 15px; }
+
+.more {
+  margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+  font-size: 0.9375rem; color: var(--muted);
+}
+.more a { font-family: var(--f-mono); font-size: 0.8125rem; }
+
+/* ---------- experience ---------- */
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline li {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 8px 32px;
+  padding-block: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.timeline li:first-child { padding-top: 0; }
+.when {
+  font-family: var(--f-mono); font-size: var(--step--1); color: var(--muted);
+  font-variant-numeric: tabular-nums; padding-top: 3px;
+}
+.when .now { color: var(--live); }
+.role { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); margin: 0; line-height: 1.3; }
+.org { color: var(--muted); margin: 2px 0 0; font-size: 0.9375rem; }
+.org b { color: var(--ink); font-weight: 600; }
+.timeline p.note { margin: 8px 0 0; color: var(--muted); font-size: 0.9375rem; }
+
+.edu {
+  margin-top: 32px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;
+}
+.edu > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; min-width: 0; }
+.edu .kind { display: block; margin-bottom: 6px; }
+.edu h3 { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); margin: 0 0 4px; line-height: 1.3; }
+.edu p { margin: 0; color: var(--muted); font-size: 0.9375rem; }
+
+/* ---------- skills ---------- */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 32px; }
+.skills h3 {
+  font-family: var(--f-mono); font-weight: 500; font-size: var(--step--1);
+  color: var(--accent); margin: 0 0 12px; letter-spacing: 0.02em;
+}
+.skills ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.skills li { font-size: 0.9375rem; padding-bottom: 6px; border-bottom: 1px dashed var(--line); }
+
+/* ---------- contact ---------- */
+.contact {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: end;
+}
+.contact h2 { font-size: var(--step-4); line-height: 1; letter-spacing: -0.03em; font-weight: 800; }
+.contact p { color: var(--muted); margin: 16px 0 0; max-width: 40ch; }
+.contact-links { display: grid; gap: 10px; }
+.contact-links a {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 20px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--surface); color: var(--ink); text-decoration: none; font-weight: 600;
+  transition: border-color .15s;
+}
+.contact-links a:hover { border-color: var(--accent); }
+.contact-links a span { font-family: var(--f-mono); font-weight: 400; font-size: var(--step--1); color: var(--muted); overflow-wrap: anywhere; text-align: right; }
+
+footer {
+  padding-block: 28px 40px; color: var(--muted); font-size: var(--step--1);
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+footer span { font-family: var(--f-mono); }
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero > * { animation: rise .6s cubic-bezier(.2,.7,.2,1) both; }
+  .hero > *:nth-child(2) { animation-delay: .12s; }
+  @keyframes rise { from { transform: translateY(10px); } to { transform: none; } }
+  .btn:hover { transform: translateY(-1px); }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .hero, .featured, .contact { grid-template-columns: minmax(0, 1fr); }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .grid, .edu, .skills { grid-template-columns: minmax(0, 1fr); }
+  .timeline li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .top nav { gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="monogram" href="#top" id="top">qusai<span>.</span>tahat</a>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <span class="status">Open to work · Abu Dhabi</span>
+      <h1>Qusai Tahat</h1>
+      <p class="lede">Software engineer at <strong>Intalio</strong>, building AI-powered enterprise systems on <strong>.NET</strong>.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="https://github.com/qusai07" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/qusai-tahat/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <figure class="code" aria-label="A short profile written as C#">
+      <div class="code-head"><i></i><i></i><i></i><b>Profile.cs</b></div>
+<pre><span class="kw">var</span> qusai = <span class="kw">new</span> Engineer
+{
+    <span class="prop">Role</span>      = <span class="str">"Software Engineer @ Intalio"</span>,
+    <span class="prop">Focus</span>     = <span class="str">"AI enterprise systems"</span>,
+    <span class="prop">Stack</span>     = [<span class="str">"C#"</span>, <span class="str">"ASP.NET Core"</span>,
+                 <span class="str">"EF Core"</span>, <span class="str">"SQL Server"</span>,
+                 <span class="str">"Blazor"</span>, <span class="str">"Flutter"</span>],
+    <span class="prop">Degree</span>    = <span class="str">"B.Sc. Software Eng., JUST"</span>,
+    <span class="prop">BasedIn</span>   = <span class="str">"Abu Dhabi, UAE"</span>,
+    <span class="prop">OpenTo</span>    = [<span class="str">"On-site"</span>, <span class="str">"Hybrid"</span>, <span class="str">"Remote"</span>]
+};
+
+<span class="kw">await</span> qusai.BuildAsync(); <span class="cm">// clean architecture</span></pre>
+    </figure>
+  </div>
+</div>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Qusai.Projects</span>
+        <h2>Selected work</h2>
+      </div>
+      <p>Enterprise tools, learning platforms and mobile apps, most of them built end to end on ASP.NET Core.</p>
+    </div>
+
+    <article class="featured">
+      <div class="body">
+        <span class="kind">AI · Document workflow</span>
+        <h3>AI Smart Inbox</h3>
+        <p>An inbox for official correspondence. Upload a letter, PDF, scan, Word file or email, and the system reads it, summarizes it in Arabic and English, classifies it, extracts the sender, reference number, dates, deadline and action items, then suggests which department should handle it. A clerk confirms or corrects every suggestion, and each step is recorded on the document's timeline.</p>
+        <ul class="stack" aria-label="Technologies">
+          <li>C# / .NET</li><li>ASP.NET Core</li><li>SignalR</li><li>Claude</li><li>Ollama</li><li>MCP server</li><li>PdfPig</li><li>MimeKit</li><li>Docker</li><li>GitHub Actions</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/qusai07/AI-Smart-Inbox" target="_blank" rel="noopener">View source on GitHub ↗</a>
+        </div>
+      </div>
+      <div class="flow">
+        <p class="flow-title">The life of a letter</p>
+        <ol>
+          <li><span class="n">1</span><span>Clerk uploads a PDF, DOCX, image, .eml or pasted text</span></li>
+          <li><span class="n">2</span><span>Background worker extracts the text</span></li>
+          <li><span class="n">3</span><span>AI engine summarizes, classifies and suggests a department</span></li>
+          <li><span class="n">4</span><span>Confidence <span class="gate">&lt; 0.6</span> goes to human review, the rest is ready to route</span></li>
+          <li><span class="n">5</span><span>Department is emailed, works the item, closes it with a note</span></li>
+        </ol>
+      </div>
+    </article>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-top"><span class="kind">Mobile + API</span></div>
+        <h3>Smart Vehicle Hold</h3>
+        <p>Handle car violations fully digitally. Instead of towing a car to a remote lot, the owner books a hold at home and commits not to move it. If the car moves during the booking, a new violation is issued automatically and the booking is cancelled.</p>
+        <ul class="points">
+          <li>REST API with JWT and role-based access</li>
+          <li>Flutter app with Provider, localization and alerts</li>
+          <li>Clean architecture and repository pattern</li>
+        </ul>
+        <ul class="stack" aria-label="Technologies"><li>ASP.NET Core</li><li>Flutter</li><li>SQL Server</li><li>PostgreSQL</li><li>JWT</li></ul>
+        <div class="links">
+          <a href="https://github.com/qusai07/Samrt_Vehical_Hold" target="_blank" rel="noopener">Back end ↗</a>
+          <a href="https://github.com/qusai07/smart_hold_app_flutter" target="_blank" rel="noopener">Flutter app ↗</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="kind">E-learning platform</span><span class="badge live">Live</span></div>
+        <h3>BTEC JO Learning Platform</h3>
+        <p>An online learning and course management system for BTEC Jordan. Teachers create and deliver courses; students learn through a simple, responsive interface. Delivered in 45 days with Rami Al-Matarneh.</p>
+        <ul class="points">
+          <li>3-tier architecture for scale and maintainability</li>
+          <li>AJAX and jQuery for real-time interactions</li>
+        </ul>
+        <ul class="stack" aria-label="Technologies"><li>ASP.NET Core</li><li>3-tier</li><li>AJAX</li><li>jQuery</li></ul>
+        <div class="links">
+          <a href="https://btec-jo.com/" target="_blank" rel="noopener">Visit btec-jo.com ↗</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="kind">Graduation project</span></div>
+        <h3>Computing Technology Club System</h3>
+        <p>A university club management system that automates admin work, schedules courses and events, registers students and keeps everyone informed.</p>
+        <ul class="points">
+          <li>Dashboard, events and notification system</li>
+          <li>Role-based access and automated emails</li>
+          <li>Dependency injection and repository pattern</li>
+        </ul>
+        <ul class="stack" aria-label="Technologies"><li>ASP.NET MVC</li><li>EF Core</li><li>SQL Server</li><li>Bootstrap</li></ul>
+        <div class="links">
+          <a href="https://github.com/qusai07/GraduationsProject" target="_blank" rel="noopener">View source ↗</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="kind">Clean architecture</span></div>
+        <h3>GameOria</h3>
+        <p>A multi-project .NET solution split into Domain, Application and Infrastructure layers, with separate Web, Admin and API apps sharing one core.</p>
+        <ul class="stack" aria-label="Technologies"><li>C#</li><li>ASP.NET Core</li><li>Web API</li><li>T-SQL</li></ul>
+        <div class="links">
+          <a href="https://github.com/qusai07/GameOriaApp" target="_blank" rel="noopener">View source ↗</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="kind">Local marketplace</span></div>
+        <h3>QUT Brand</h3>
+        <p>A store for local products where buyers contact the product owner directly, with no account needed. Built to support small local businesses.</p>
+        <ul class="points">
+          <li>Role-based views for product owners</li>
+          <li>Data filtering with Entity Framework Core</li>
+        </ul>
+        <ul class="stack" aria-label="Technologies"><li>ASP.NET Core</li><li>EF Core</li><li>Bootstrap</li></ul>
+        <div class="links">
+          <a href="https://github.com/qusai07/Qut_LocalStore" target="_blank" rel="noopener">View source ↗</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="kind">E-commerce</span><span class="badge team">Client work</span></div>
+        <h3>JoExport</h3>
+        <p>An online store built with the MVC pattern in .NET for Future Advanced Internet Solutions, together with Rami Al-Matarneh.</p>
+        <ul class="stack" aria-label="Technologies"><li>ASP.NET MVC</li><li>C#</li><li>JavaScript</li></ul>
+        <div class="links">
+          <a href="https://github.com/qusai07/ProjectFutureAdvannced" target="_blank" rel="noopener">View source ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="more">
+      <span>More on GitHub:</span>
+      <a href="https://github.com/qusai07/dms" target="_blank" rel="noopener">dms</a>
+      <a href="https://github.com/qusai07/CookieAuthBlazor" target="_blank" rel="noopener">CookieAuthBlazor</a>
+      <a href="https://github.com/qusai07/ShopSite_Master" target="_blank" rel="noopener">ShopSite_Master</a>
+      <a href="https://github.com/qusai07?tab=repositories" target="_blank" rel="noopener">All repositories ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Qusai.Experience</span>
+        <h2>Where I've worked</h2>
+      </div>
+    </div>
+
+    <ol class="timeline">
+      <li>
+        <div class="when"><span class="now">Sep 2025 – Now</span></div>
+        <div>
+          <h3 class="role">Software Engineer</h3>
+          <p class="org"><b>Intalio</b> · Full-time · United Arab Emirates</p>
+          <p class="note">Building Intalio CTS, an enterprise Correspondence Tracking System for multiple clients, and working on Intalio's AI product, with C#, ASP.NET Core and Vue.js.</p>
+        </div>
+      </li>
+      <li>
+        <div class="when">Apr 2024 – Aug 2025</div>
+        <div>
+          <h3 class="role">Software Engineer</h3>
+          <p class="org"><b>Minerets Tech</b> · Full-time · Amman, Jordan</p>
+          <p class="note">.NET architecture, Blazor and .NET MAUI applications.</p>
+        </div>
+      </li>
+      <li>
+        <div class="when">Aug 2024 – Oct 2024</div>
+        <div>
+          <h3 class="role">SAP Technical Consultant</h3>
+          <p class="org"><b>SkyTech</b> · Internship · Amman, Jordan</p>
+          <p class="note">SAP Business and ERP training.</p>
+        </div>
+      </li>
+      <li>
+        <div class="when">Aug 2023 – Oct 2023</div>
+        <div>
+          <h3 class="role">ASP.NET Developer</h3>
+          <p class="org"><b>Future Advanced Internet Solutions</b> · Internship · Hybrid</p>
+          <p class="note">Full-stack ASP.NET Core MVC development, including the JoExport store.</p>
+        </div>
+      </li>
+      <li>
+        <div class="when">Feb 2023 – May 2023</div>
+        <div>
+          <h3 class="role">.NET Developer</h3>
+          <p class="org"><b>Pioneers Academy</b> · Part-time · Hybrid</p>
+          <p class="note">Completed ASP.NET Core MVC, levels 1 to 3.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="edu">
+      <div>
+        <span class="kind">Education · 2021 – 2025</span>
+        <h3>Jordan University of Science and Technology</h3>
+        <p>Bachelor's in Computer Software Engineering</p>
+      </div>
+      <div>
+        <span class="kind">Course · Udemy</span>
+        <h3>Generative AI for Beginners</h3>
+        <p>Fundamentals of generative AI for text, images and content.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Qusai.Skills</span>
+        <h2>What I work with</h2>
+      </div>
+    </div>
+    <div class="skills">
+      <div>
+        <h3>Back end</h3>
+        <ul><li>C#</li><li>.NET Core / ASP.NET Core</li><li>ASP.NET MVC &amp; Web API</li><li>Entity Framework Core</li><li>SignalR</li><li>JWT &amp; role-based auth</li></ul>
+      </div>
+      <div>
+        <h3>Front end &amp; mobile</h3>
+        <ul><li>Blazor</li><li>Vue.js</li><li>Flutter</li><li>.NET MAUI</li><li>jQuery &amp; AJAX</li><li>Bootstrap</li></ul>
+      </div>
+      <div>
+        <h3>Data, AI &amp; tools</h3>
+        <ul><li>SQL Server</li><li>PostgreSQL</li><li>LLMs: Claude, Ollama</li><li>DevExpress XAF</li><li>SAP ERP</li><li>Postman, Docker, Git</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact">
+    <div>
+      <span class="eyebrow">Qusai.Contact</span>
+      <h2>Let's build something.</h2>
+      <p>Open to software engineering roles on-site, hybrid or remote. The fastest way to reach me is a message on LinkedIn.</p>
+    </div>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/qusai-tahat/" target="_blank" rel="noopener">LinkedIn <span>in/qusai-tahat</span></a>
+      <a href="https://github.com/qusai07" target="_blank" rel="noopener">GitHub <span>github.com/qusai07</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Qusai Tahat</span>
+    <span>Built with care, shipped like production.</span>
+  </footer>
+</div>
+</body>
+</html>
