@@ -240,6 +240,17 @@ h2 {
   content: ""; position: absolute; left: 12.5px; top: 37px; bottom: -8px; width: 1px; background: var(--accent); opacity: .35;
 }
 .flow li .gate { font-family: var(--f-mono); font-size: 0.8125rem; color: var(--accent); white-space: nowrap; }
+.facts {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;
+  margin: 0 0 18px; padding: 0; list-style: none;
+}
+.facts li { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.facts b {
+  display: block; font-family: var(--f-display); font-weight: 700; font-size: var(--step-1);
+  line-height: 1.2; color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.facts span { display: block; font-size: 0.75rem; line-height: 1.35; color: var(--muted); }
+@media (max-width: 640px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ---------- project grid ---------- */
 .grid {
@@ -426,8 +437,68 @@ footer span { font-family: var(--f-mono); }
         <span class="eyebrow">Qusai.Projects</span>
         <h2>Selected work</h2>
       </div>
-      <p>Enterprise tools, learning platforms and mobile apps, most of them built end to end on ASP.NET Core.</p>
+      <p>AI systems, enterprise tools, learning platforms and mobile apps, most of them built end to end on ASP.NET Core.</p>
     </div>
+
+    <article class="featured">
+      <div class="body">
+        <span class="kind">AI · Customer support · Arabic / English</span>
+        <h3>AI Support Ticket Assistant</h3>
+        <p>A bilingual support desk where an AI pipeline triages every ticket, retrieves policy and drafts a reply that cites its sources. Plain Python rules, not the model, decide what must go to a person, and reviewers approve, edit or escalate before anything is sent. It runs fully local on Ollama and works as a real multi-user product: login, editable roles and permissions, team queues, SLAs, live monitoring and an audit log, all in Arabic (RTL) and English.</p>
+        <ul class="facts" aria-label="Evaluation results on 66 labeled tickets">
+          <li><b>0</b><span>unsafe auto-sends</span></li>
+          <li><b>100%</b><span>escalation recall</span></li>
+          <li><b>94%</b><span>action accuracy</span></li>
+          <li><b>90</b><span>deterministic tests</span></li>
+        </ul>
+        <ul class="stack" aria-label="Technologies">
+          <li>Python</li><li>FastAPI</li><li>LangGraph</li><li>Ollama</li><li>RAG · Chroma</li><li>Next.js</li><li>TypeScript</li><li>PostgreSQL</li><li>SSE</li><li>Docker</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/qusai07/support-ticket-assistant" target="_blank" rel="noopener">View source on GitHub ↗</a>
+        </div>
+      </div>
+      <div class="flow">
+        <p class="flow-title">The life of a ticket</p>
+        <ol>
+          <li><span class="n">1</span><span>Ticket and its job are saved in one transaction; a worker picks it up</span></li>
+          <li><span class="n">2</span><span>Triage: category, priority, language and risk signals (LLM + rules)</span></li>
+          <li><span class="n">3</span><span>Rules escalate legal, safety, fraud and VIP tickets to the owning team</span></li>
+          <li><span class="n">4</span><span>Agent drafts a cited reply; guardrails check every number and ID against the evidence</span></li>
+          <li><span class="n">5</span><span>Review gate: send, or hand to a person with the reason shown</span></li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="featured">
+      <div class="body">
+        <span class="kind">AI · Finance · Accounts payable</span>
+        <h3>InvoiceFlow</h3>
+        <p>AI invoice extraction with deterministic purchase-order matching. A vision model reads each PDF, scan or photo in Arabic or English. After that, C# makes every decision: arithmetic and UAE VAT checks, the supplier master, a fraud check for a changed IBAN, duplicate detection, and 2-way PO and 3-way goods-receipt matching within tolerances. Invoices that pass post to the ERP. Exceptions go to a reviewer, who can correct, override with a reason, or send the invoice for a four-eyes approval.</p>
+        <ul class="facts" aria-label="Project facts">
+          <li><b>23</b><span>validation rules, EN/AR messages</span></li>
+          <li><b>40</b><span>synthetic eval invoices</span></li>
+          <li><b>9</b><span>architecture decision records</span></li>
+          <li><b>4-eyes</b><span>approval for high-value invoices</span></li>
+        </ul>
+        <ul class="stack" aria-label="Technologies">
+          <li>.NET 10</li><li>ASP.NET Core</li><li>EF Core</li><li>SQL Server</li><li>Azure OpenAI</li><li>Next.js</li><li>Testcontainers</li><li>OpenTelemetry</li><li>Bicep</li><li>Docker</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/qusai07/invoice-extraction" target="_blank" rel="noopener">View source on GitHub ↗</a>
+        </div>
+      </div>
+      <div class="flow">
+        <p class="flow-title">AI only extracts. C# decides.</p>
+        <ol>
+          <li><span class="n">1</span><span>Upload is scanned for malware and checked for duplicates, then queued</span></li>
+          <li><span class="n">2</span><span>Vision model extracts header, lines and VAT as structured JSON</span></li>
+          <li><span class="n">3</span><span>C# normalizes Arabic digits, dates, amounts, TRN and IBAN</span></li>
+          <li><span class="n">4</span><span>23 rules check VAT, supplier, IBAN, PO and goods receipt</span></li>
+          <li><span class="n">5</span><span>Clean invoices post to the ERP; exceptions go to review with evidence</span></li>
+        </ol>
+      </div>
+    </article>
 
     <article class="featured">
       <div class="body">
@@ -622,15 +693,15 @@ footer span { font-family: var(--f-mono); }
     <div class="skills">
       <div>
         <h3>Back end</h3>
-        <ul><li>C#</li><li>.NET Core / ASP.NET Core</li><li>ASP.NET MVC &amp; Web API</li><li>Entity Framework Core</li><li>SignalR</li><li>JWT &amp; role-based auth</li></ul>
+        <ul><li>C#</li><li>.NET Core / ASP.NET Core</li><li>ASP.NET MVC &amp; Web API</li><li>Entity Framework Core</li><li>SignalR</li><li>JWT &amp; role-based auth</li><li>Python &amp; FastAPI</li></ul>
       </div>
       <div>
         <h3>Front end &amp; mobile</h3>
-        <ul><li>Blazor</li><li>Vue.js</li><li>Flutter</li><li>.NET MAUI</li><li>jQuery &amp; AJAX</li><li>Bootstrap</li></ul>
+        <ul><li>Blazor</li><li>Vue.js</li><li>Next.js &amp; React</li><li>Flutter</li><li>.NET MAUI</li><li>jQuery &amp; AJAX</li><li>Bootstrap</li></ul>
       </div>
       <div>
         <h3>Data, AI &amp; tools</h3>
-        <ul><li>SQL Server</li><li>PostgreSQL</li><li>LLMs: Claude, Ollama</li><li>DevExpress XAF</li><li>SAP ERP</li><li>Postman, Docker, Git</li></ul>
+        <ul><li>SQL Server</li><li>PostgreSQL</li><li>LLMs: Claude, Ollama</li><li>LangGraph, RAG &amp; LLM evals</li><li>Azure OpenAI &amp; Bicep</li><li>DevExpress XAF</li><li>SAP ERP</li><li>Postman, Docker, Git</li></ul>
       </div>
     </div>
   </div>
